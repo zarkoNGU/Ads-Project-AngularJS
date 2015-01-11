@@ -1,5 +1,18 @@
-app.controller('AllAdsCtrl', ['$scope', 'adminAdsData', 'filter', function($scope, adminAdsData, filter){
+app.controller('AllAdsCtrl', ['$scope', 'adminAdsData', 'categoriesData', 'townsData' , 'filter', function($scope, adminAdsData, categoriesData, townsData, filter){
     $scope.ready = false;
+    $scope.editAdPart = false;
+    
+    categoriesData.getCategories()
+        .$promise
+        .then(function(data) {
+            $scope.categories = data; 
+        })
+    
+    townsData.getTowns()
+        .$promise
+        .then(function(data) {
+            $scope.towns = data; 
+        }) 
     
     function loadAds(filterParams, startPage) {
         filterParams = filterParams || {};
@@ -31,7 +44,7 @@ app.controller('AllAdsCtrl', ['$scope', 'adminAdsData', 'filter', function($scop
             .$promise
             .then(function (data) {
                 console.log("Approvna se :)");
-            })
+            })                       
     }
     
     $scope.reject = function rejectAd(adId) {
@@ -39,6 +52,31 @@ app.controller('AllAdsCtrl', ['$scope', 'adminAdsData', 'filter', function($scop
             .$promise
             .then(function (data) {
                 console.log("Rejectna se :)");
+            })
+    }
+    
+    $scope.get = function getAd(adId) {
+        adminAdsData.getAd(adId)
+            .$promise
+            .then(function (data) {
+                $scope.topic = data;    
+                $scope.editAdPart = true; 
+            })
+    }
+    
+    $scope.edit = function editAd(topic) {
+        adminAdsData.editAd(topic)
+            .$promise
+            .then(function (data) {
+                console.log("Successfuly edited topic."); 
+            })
+    }
+    
+    $scope.deleteAd = function deleteAd(adId) {
+        adminAdsData.deleteAd(adId)
+            .$promise
+            .then(function (data) {
+                console.log("Successfuly deleted topic."); 
             })
     }
 }])

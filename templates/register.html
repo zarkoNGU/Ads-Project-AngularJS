@@ -1,22 +1,66 @@
-<form class="form-signin">
-    <h2 class="form-signin-heading">Register</h2>
-    <label for="username">Username</label>
-    <input type="text" ng-model="user.username" id="username" class="form-control" placeholder="Username" required="" autofocus="">
-    <label for="inputPassword">Password</label>
-    <input type="password" ng-model="user.password" id="inputPassword" class="form-control" placeholder="Password" required="">
-    <label for="confirmPassword">Confirm password</label>
-    <input type="password" ng-model="user.confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="">
-    <label for="email">Email</label>
-    <input type="email" ng-model="user.email" id="email" class="form-control" placeholder="Email" required="">
-    <label for="name">Name</label>
-    <input type="text" ng-model="user.name" id="name" class="form-control" placeholder="Name" required="">
-    <label for="phone">Phone</label>
-    <input type="text" ng-model="user.phone" id="phone" class="form-control" placeholder="Phone" required="">
-    <div class="form-group">
-        <label for="inputTown">Choose town</label>
-        <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="user.townId">
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+            <legend class="text-center">Register and win biscuit</legend>
+                                                          
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="username">Username</label>
+              <div class="col-md-9">
+                <input type="text" ng-model="user.username" id="username" placeholder="Password" class="form-control">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-3 control-label">Password</label>
+              <div class="col-md-9">
+                <input type="password" ng-model="user.password" placeholder="Password" class="form-control">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-3 control-label">Confirm Password</label>
+              <div class="col-md-9">
+                <input type="password" ng-model="user.confirmPassword" placeholder="Confirm password" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Your E-mail</label>
+              <div class="col-md-9">
+                <input id="email" ng-model="user.email" type="text" placeholder="Your email" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label">Phone</label>
+              <div class="col-md-9">                                                     
+                <input type="text" ng-model="user.phone" placeholder="Password" class="form-control">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="inputTown">Choose town</label>
+              <div class="col-md-9">    
+                    <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="user.townId" class="form-control">
 
-        </select>
+                    </select>  
+              </div>
+            </div>
+    
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">                                     
+                <button ng-click="register(user)" class="btn btn-primary btn-lg" type="submit">Sign in</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
-    <button ng-click="register(user)" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+</div>

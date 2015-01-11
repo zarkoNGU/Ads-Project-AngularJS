@@ -15,6 +15,37 @@ app.factory('adminAdsData', ['$resource', 'baseServiceUrl', 'authentication', fu
         return resource.get(filterParams);    
     }
     
+    function getAdById(adId) {
+        var resource = $resource(baseServiceUrl + 'admin/ads/' + adId, {}, {
+            getAd: {                                    
+                method: 'GET',
+                headers: authentication.getHeaders()
+            }
+        });                                                                                                                    
+        return resource.getAd();
+    }
+    
+    function editAdById(topic) {
+        var resource = $resource(baseServiceUrl + 'admin/ads/' + topic.id, {}, {
+            editAd: {                                    
+                method: 'PUT',
+                data: {'title': topic.title},
+                headers: authentication.getHeaders()
+            }
+        });                                                                                                                    
+        return resource.editAd();
+    }
+    
+    function deleteAdById(adId) {
+        var resource = $resource(baseServiceUrl + 'admin/ads/' + adId, {}, {
+            deleteAd: {                                    
+                method: 'DELETE',             
+                headers: authentication.getHeaders()
+            }
+        });                                                                                               
+        return resource.deleteAd();
+    }
+    
     function approveAd (adId) {
         var resource = $resource(baseServiceUrl + 'admin/ads/approve/' + adId, {}, {
             approve: {                                    
@@ -37,6 +68,9 @@ app.factory('adminAdsData', ['$resource', 'baseServiceUrl', 'authentication', fu
 
     return {
         getAds: getAds,
+        getAd: getAdById,
+        editAd: editAdById,
+        deleteAd: deleteAdById,
         approveAd: approveAd,
         rejectAd: rejectAd
     }
