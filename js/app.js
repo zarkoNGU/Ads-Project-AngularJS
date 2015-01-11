@@ -17,6 +17,14 @@ app.config(['$routeProvider', function($routeProvider){
         templateUrl: 'templates/register.html',
         controller: 'RegisterCtrl'
     });
+    $routeProvider.when('/user/publish_ad',{
+        templateUrl: 'templates/logged-in/publish-ads.html',
+        controller: 'PublishAdsCtrl'
+    });
+    $routeProvider.when('/user/ads',{
+        templateUrl: 'templates/logged-in/user-ads.html',
+        controller: 'UserAdsCtrl'
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });  

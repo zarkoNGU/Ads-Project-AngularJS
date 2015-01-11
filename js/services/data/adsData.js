@@ -1,12 +1,18 @@
-app.factory('adsData', ['$resource', 'baseServiceUrl', function($resource, baseServiceUrl) {
+app.factory('adsData', ['$resource', 'baseServiceUrl', 'authentication', function($resource, baseServiceUrl, authentication) {
     var resource = $resource(baseServiceUrl + 'ads:adId', {adId: '@id'}, {
-        update: { method: 'PUT' }    
+        update: { method: 'PUT' },    
     })
-    function getPublicAds (filterParams, page) {
-        //console.log(filterParams);
-//        if( page != undefined) {               
-//            resource = $resource(baseServiceUrl + 'ads?startpage=' + page);
-//        }                                                       
+    var userResource = $resource(baseServiceUrl + 'user/ads', {}, {
+        get: {   
+            method: 'GET',
+            headers: authentication.getHeaders()
+        },
+        save: {
+            method: 'POST',
+            headers: authentication.getHeaders()
+        }
+    });                                             
+    function getPublicAds (filterParams) {                                                     
         return resource.get(filterParams);    
     }
     
@@ -18,8 +24,12 @@ app.factory('adsData', ['$resource', 'baseServiceUrl', function($resource, baseS
         return resource.get({ id: adId });
     }
     
-    function addAd(ad) {
-        return resource.save(ad);
+    function getUserAds() {
+        return userResource.get();
+    }
+    
+    function addAd(ad) {                                                                                                                    
+        return userResource.save(ad);
     }
     
     function deleteAd(adId) {
@@ -28,6 +38,7 @@ app.factory('adsData', ['$resource', 'baseServiceUrl', function($resource, baseS
 
     return {
         getPublicAds: getPublicAds,
+        getUserAds: getUserAds,
         edit: editAd,
         getAdById: getAdById,
         add: addAd,
