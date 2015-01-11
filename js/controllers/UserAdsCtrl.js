@@ -1,5 +1,18 @@
-app.controller('UserAdsCtrl', ['$scope', 'adsData', function($scope, adsData){ 
+app.controller('UserAdsCtrl', ['$scope', 'adsData', 'categoriesData', 'townsData' , function($scope, adsData, categoriesData, townsData){ 
     var ready = false;
+    $scope.editAdPart = false;
+    
+    categoriesData.getCategories()
+        .$promise
+        .then(function(data) {
+            $scope.categories = data; 
+        })
+    
+    townsData.getTowns()
+        .$promise
+        .then(function(data) {
+            $scope.towns = data; 
+        })
     
     adsData.getUserAds()
         .$promise
@@ -31,4 +44,29 @@ app.controller('UserAdsCtrl', ['$scope', 'adsData', function($scope, adsData){
                 console.log("uraaaa");
             })
     } 
+    
+    $scope.edit = function editAd(adId) {
+        adsData.edit(adId)
+            .$promise
+            .then(function (data) {
+                console.log("uraaaa");
+            })
+    }
+    
+    $scope.get = function getAd(adId) {
+        adsData.getAdById(adId)
+            .$promise
+            .then(function (data) {
+                $scope.topic = data;    
+                $scope.editAdPart = true; 
+            })
+    }
+    
+    $scope.edit = function editAd(topic) {
+        adsData.edit(topic)
+            .$promise
+            .then(function (data) {
+                console.log("Successfuly edited topic."); 
+            })
+    }
 }])

@@ -12,8 +12,21 @@ app.controller('PublicAdsCtrl', ['$scope', 'adsData', 'filter', function($scope,
             })
     }
     
-    loadPublicAds();
+    function getAdById(adId) {
+        adId = adId || 1;                  
+        adsData.getAdById(adId)
+            .$promise
+            .then(function (data) {
+                $scope.topic = data;  
+            })
+    }
     
+    loadPublicAds();
+    getAdById();
+    
+    $scope.getAd = function getAd(adId){
+        getAdById(adId);
+    }
     
     $scope.pagePrevious = function() {
         page = filter.getPageParams();     

@@ -1,0 +1,17 @@
+<form class="form-signin">
+    <h2 class="form-signin-heading">Ad with #id = {{topic.id}}</h2>
+    <input type="hidden" ng-model="topic.id">
+    <label for="title">Title</label>
+    <input type="text" ng-model="topic.title" id="title" class="form-control" placeholder="Title" required="" autofocus="">
+    
+    <label for="text">Text</label>                                                                    
+    <textarea ng-model="topic.text" id="text" placeholder="Text" class="form-control" rows="4"></textarea> 
+    
+    <label for="inputCategory">Choose category</label>
+    <select id="inputCategory" ng-options="category.id as category.name for category in categories" ng-model="topic.categoryId" class="form-control">  
+    </select>
+    
+    <label for="inputTown">Choose town</label>
+    <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="topic.townId" class="form-control">  
+    </select>                                                                                              
+</form>

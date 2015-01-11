@@ -1,9 +1,9 @@
-<div id="public-ads">
+<div id="public-ads" ng-hide="editAdPart">
     <img src="images/ajax-loader.gif" ng-hide="ready" width="250px">
     <ul ng-cloak>
         <li ng-repeat="ad in adsData.ads">
             {{ad.title}}                                                  
-            <a ng-click="edit(ad.id)" href="#/user/ads/edit/{{ad.id}}">Edit</a>
+            <a ng-click="get(ad.id)">Edit</a>
             <button ng-click="deleteAd(ad.id)">Delete</button>
             <button ng-click="activate(ad.id)">Activate</button>
             <button ng-click="deactivate(ad.id)">Deactivate</button>     
@@ -19,4 +19,54 @@
     </div>-->
 <!--    <li><a ng-click="pagePrevious()">Previous</a></li>
     <li><a ng-click="pageNext()">Next</a></li>-->
-</div>
+</div>   
+<div class="container" ng-show="editAdPart">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+            <legend class="text-center">Edit Ad with #id = {{topic.id}}</legend>
+                                                          
+            <div class="form-group">
+              <label for="title">Title</label>
+              <div class="col-md-9">
+                <input type="text" ng-model="topic.title" id="title" class="form-control" placeholder="Title" required="" autofocus="">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-3 control-label">Text</label>
+              <div class="col-md-9">
+                <textarea ng-model="topic.text" id="text" placeholder="Text" class="form-control" rows="6"></textarea>
+              </div>
+            </div> 
+                 
+             <div class="form-group">
+              <label class="col-md-3 control-label">Choose category</label>
+              <div class="col-md-9">
+                <select id="inputCategory" ng-options="category.id as category.name for category in categories" ng-model="topic.categoryId" class="form-control">  
+                </select>
+              </div>
+            </div>      
+    
+            <div class="form-group">
+              <label class="col-md-3 control-label">Choose town</label>
+              <div class="col-md-9">
+                <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="topic.townId" class="form-control">  
+                </select>
+              </div>
+            </div>
+            
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">                                     
+                <button ng-click="login(user)" class="btn btn-primary btn-lg" type="submit">Login</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>      

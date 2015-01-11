@@ -39,6 +39,18 @@ app.config(['$routeProvider', function($routeProvider){
         templateUrl: 'templates/admin_tmp/allAds.html',
         controller: 'AllAdsCtrl'
     });
+    $routeProvider.when('/admin/users',{
+        templateUrl: 'templates/admin_tmp/allUsers.html',
+        controller: 'AllUsersCtrl'
+    });
+    $routeProvider.when('/admin/categories',{
+        templateUrl: 'templates/admin_tmp/allCategories.html',
+        controller: 'AllCategoriesCtrl'
+    });
+    $routeProvider.when('/admin/categories',{
+        templateUrl: 'templates/admin_tmp/addCategory.html',
+        controller: 'AddCategoryCtrl'
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });  

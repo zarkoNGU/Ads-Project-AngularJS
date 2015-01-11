@@ -21,7 +21,13 @@ app.factory('adsData', ['$resource', 'baseServiceUrl', 'authentication', functio
     }
     
     function getAdById(adId) {
-        return resource.get({ id: adId });
+         var getResource = $resource(baseServiceUrl + 'user/ads/' + adId, {}, {
+            get: {   
+                method: 'GET',
+                headers: authentication.getHeaders()
+            }
+        });
+        return getResource.get();
     }
     
     function getUserAds() {

@@ -1,25 +1,10 @@
 <div id="public-ads">
     <img src="images/ajax-loader.gif" ng-hide="ready" width="250px">
     <ul ng-cloak>
-        <li ng-repeat="ad in adsData.ads">
+        <li ng-repeat="ad in adsData.ads" ng-click="getAd(ad.id)">
             {{ad.title}}
         </li>   
     </ul>  
     <li><a ng-click="pagePrevious()">Previous</a></li>
     <li><a ng-click="pageNext()">Next</a></li>
-</div>
-
-<div>
-    
-    
-    <ul>
-        <li>Lekar</li>
-        <li>Ggggwgw</li>
-        <li>Trewa</li>
-        <li>Lekar</li>
-        <li>Zadaf</li>
-        <li>Ggsgw</li>
-        <li>Earfsfas</li>
-        <li>Naasgg</li>
-    </ul>
-</div>
+</div>  
