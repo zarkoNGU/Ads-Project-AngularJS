@@ -1,4 +1,29 @@
-app.factory('userData', ['$resource', 'baseServiceUrl', 'authentication', function($resource, baseServiceUrl, authentication) {
+app.factory('userData', ['$resource', 'baseServiceUrl', 'authentication', function($resource, baseServiceUrl, authentication) {    
+    
+    function getUserData() {
+        var resource = $resource(baseServiceUrl + 'user/profile', {}, {
+            get: {   
+                method: 'GET',
+                headers: authentication.getHeaders()
+            }
+        });
+        return resource.get();    
+    }
+    
+    function editUser(user) {
+        var resource = $resource(baseServiceUrl + 'user/profile', {}, {
+            edit: {   
+                method: 'PUT',           
+                headers: authentication.getHeaders()
+            }
+        }); 
+        return resource.edit(user)
+            .$promise
+            .then(function(data) {   
+                authentication.saveUser(data);               
+            })    
+    }
+    
     function registerUser(user) {
         return $resource(baseServiceUrl + "user/register")
             .save(user)
@@ -19,17 +44,14 @@ app.factory('userData', ['$resource', 'baseServiceUrl', 'authentication', functi
         return resource;   
     }
     
-    function logoutUser(user) {
-        return $resource(baseServiceUrl + "user/logout")
-            .save(user)
-            .$promise
-            .then(function(data) {
-                authentication.removeUser();                   
-            })    
+    function logoutUser(user) { 
+        authentication.removeUser();  
     }
 
 
     return {
+        getUserData: getUserData,
+        edit: editUser,
         register: registerUser,
         login: loginUser,
         logout: logoutUser

@@ -2,9 +2,21 @@
     <img src="images/ajax-loader.gif" ng-hide="ready" width="250px">
     <ul ng-cloak>
         <li ng-repeat="ad in adsData.ads">
-            {{ad.title}}
-        </li>
+            {{ad.title}}                                                  
+            <a ng-click="edit(ad.id)" href="#/user/ads/edit/{{ad.id}}">Edit</a>
+            <button ng-click="deleteAd(ad.id)">Delete</button>
+            <button ng-click="activate(ad.id)">Activate</button>
+            <button ng-click="deactivate(ad.id)">Deactivate</button>     
+        </li>  
     </ul>
-    <li><a ng-click="pagePrevious()">Previous</a></li>
-    <li><a ng-click="pageNext()">Next</a></li>
+<!--    <div class="form-group">
+        <label>Choose status</label>
+        <select >
+            <option>All</option>
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+    </div>-->
+<!--    <li><a ng-click="pagePrevious()">Previous</a></li>
+    <li><a ng-click="pageNext()">Next</a></li>-->
 </div>

@@ -1,0 +1,23 @@
+<form class="form-signin">
+    <h2 class="form-signin-heading">Profile</h2>
+    <label for="username">Username</label>
+    <input type="text" ng-model="user.username" id="username" class="form-control" placeholder="Username" required="" autofocus="">
+    <label for="inputPassword">Password</label>
+    <input type="password" ng-model="user.password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <label for="confirmPassword">Confirm password</label>
+    <input type="password" ng-model="user.confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="">
+    <label for="email">Email</label>
+    <input type="email" ng-model="user.email" id="email" class="form-control" placeholder="Email" required="">
+    <label for="name">Name</label>
+    <input type="text" ng-model="user.name" id="name" class="form-control" placeholder="Name" required="">
+    <label for="phone">Phone</label>
+    <input type="text" ng-model="user.phonenumber" id="phone" class="form-control" placeholder="Phone" required="">
+    <div class="form-group">
+        <label for="inputTown">Choose town</label>
+        <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="user.townId">
+
+        </select>
+    </div>
+    <button ng-click="edit(user)" class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+    <a href="#/" class="btn btn-lg btn-default btn-block" type="submit">Cancel</a>
+</form>

@@ -6,7 +6,7 @@ app.factory('adsData', ['$resource', 'baseServiceUrl', 'authentication', functio
         get: {   
             method: 'GET',
             headers: authentication.getHeaders()
-        },
+        },  
         save: {
             method: 'POST',
             headers: authentication.getHeaders()
@@ -32,16 +32,44 @@ app.factory('adsData', ['$resource', 'baseServiceUrl', 'authentication', functio
         return userResource.save(ad);
     }
     
-    function deleteAd(adId) {
-        return resource.delete({id: AdId});
+    function activateAd(adId) {
+        var userResource = $resource(baseServiceUrl + 'user/ads/publishagain/' + adId, {}, {
+            activate: {                                    
+                method: 'PUT',
+                headers: authentication.getHeaders()
+            }
+        });                                                                                                                    
+        return userResource.activate();
+    }
+    
+    function deactivateAd(adId) {
+        var userResource = $resource(baseServiceUrl + 'user/ads/deactivate/' + adId, {}, {
+            deactivate: {                                    
+                method: 'PUT',
+                headers: authentication.getHeaders()
+            }
+        });                                                                                                                    
+        return userResource.deactivate();
+    }
+    
+    function deleteAd(adId) {  
+        var userResource = $resource(baseServiceUrl + 'user/ads/' + adId, {}, {
+            deleteAd: {                                    
+                method: 'DELETE',
+                headers: authentication.getHeaders()
+            }
+        });
+        return userResource.deleteAd(adId);
     }
 
     return {
         getPublicAds: getPublicAds,
         getUserAds: getUserAds,
+        activateAd: activateAd,
+        deactivateAd: deactivateAd,
         edit: editAd,
         getAdById: getAdById,
         add: addAd,
-        delete: deleteAd
+        deleteAd: deleteAd
     }
 }])

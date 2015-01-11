@@ -25,6 +25,14 @@ app.config(['$routeProvider', function($routeProvider){
         templateUrl: 'templates/logged-in/user-ads.html',
         controller: 'UserAdsCtrl'
     });
+    $routeProvider.when('/user/profile',{
+        templateUrl: 'templates/logged-in/userProfile.html',
+        controller: 'UserProfileCtrl'
+    });
+    $routeProvider.when('/logout',{
+        templateUrl: 'templates/home.html',
+        controller: 'LogoutCtrl'
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });  
