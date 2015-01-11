@@ -6,10 +6,12 @@
         <input type="password" ng-model="user.password" id="inputPassword" class="form-control" placeholder="Password" required="">
         <label for="confirmPassword" class="sr-only">Confirm password</label>
         <input type="password" ng-model="user.confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="">
-        <label for="email" class="sr-only">Name</label>
+        <label for="email" class="sr-only">Email</label>
         <input type="email" ng-model="user.email" id="email" class="form-control" placeholder="Email" required="">
         <label for="name" class="sr-only">Name</label>
         <input type="text" ng-model="user.name" id="name" class="form-control" placeholder="Name" required="">
+        <label for="phone" class="sr-only">Phone</label>
+        <input type="text" ng-model="user.phone" id="phone" class="form-control" placeholder="Phone" required="">
         <div class="form-group">
             <label for="inputTown">Choose town</label>
             <select id="inputTown" ng-options="town.id as town.name for town in towns" ng-model="user.townId">
