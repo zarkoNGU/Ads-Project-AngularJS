@@ -33,6 +33,12 @@ app.config(['$routeProvider', function($routeProvider){
         templateUrl: 'templates/home.html',
         controller: 'LogoutCtrl'
     });
+    
+    // Admin Panel Templates
+    $routeProvider.when('/admin/ads',{
+        templateUrl: 'templates/admin_tmp/allAds.html',
+        controller: 'AllAdsCtrl'
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });  

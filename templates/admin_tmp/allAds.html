@@ -1,0 +1,12 @@
+<div id="public-ads">
+    <img src="images/ajax-loader.gif" ng-hide="ready" width="250px">
+    <ul ng-cloak>
+        <li ng-repeat="ad in adsData.ads">
+            {{ad.title}}
+            <button ng-click="approve(ad.id)">Approve</button>
+            <button ng-click="reject(ad.id)">Reject</button>
+        </li>
+    </ul>
+    <li><a ng-click="pagePrevious()">Previous</a></li>
+    <li><a ng-click="pageNext()">Next</a></li>
+</div>
